@@ -15,6 +15,12 @@ class MainViewController: UIViewController {
         imageView.image = UIImage(named: "bubble")
         return imageView
     }()
+    
+    private let characterImageView: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: "1-1")
+        return imageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,7 @@ class MainViewController: UIViewController {
     
     private func configureHierarchy() {
         view.addSubview(bubbleImageView)
-        
+        view.addSubview(characterImageView)
     }
     
     private func configureLayout() {
@@ -34,6 +40,12 @@ class MainViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
             make.height.equalTo(170)
+        }
+        
+        characterImageView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(90)
+            make.top.equalTo(bubbleImageView.snp.bottom)
+            make.height.equalTo(characterImageView.snp.width)
         }
         
     }
