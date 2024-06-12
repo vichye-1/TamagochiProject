@@ -16,6 +16,16 @@ class MainViewController: UIViewController {
         return imageView
     }()
     
+    private let speechLabel: UILabel = {
+        let label = UILabel()
+        label.text = "눈이 빠질 것 같아요...😇"
+        label.textColor = .darkGray
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 15)
+        return label
+    }()
+    
     private let characterImageView: UIImageView = {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "1-1")
@@ -32,6 +42,7 @@ class MainViewController: UIViewController {
     
     private func configureHierarchy() {
         view.addSubview(bubbleImageView)
+        view.addSubview(speechLabel)
         view.addSubview(characterImageView)
     }
     
@@ -46,6 +57,11 @@ class MainViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(90)
             make.top.equalTo(bubbleImageView.snp.bottom)
             make.height.equalTo(characterImageView.snp.width)
+        }
+        
+        speechLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(bubbleImageView).inset(16)
+            make.verticalEdges.equalTo(bubbleImageView).inset(32)
         }
         
     }
