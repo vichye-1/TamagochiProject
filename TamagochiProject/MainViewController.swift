@@ -31,6 +31,18 @@ class MainViewController: UIViewController {
         imageView.image = UIImage(named: "1-1")
         return imageView
     }()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.layer.borderWidth = 1
+        label.layer.borderColor = UIColor.lightGray.cgColor
+        label.layer.cornerRadius = 4
+        label.text = "방실방실 다마고치"
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 15)
+        label.textAlignment = .center
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +56,19 @@ class MainViewController: UIViewController {
         view.addSubview(bubbleImageView)
         view.addSubview(speechLabel)
         view.addSubview(characterImageView)
+        view.addSubview(nameLabel)
     }
     
     private func configureLayout() {
         bubbleImageView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
             make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
-            make.height.equalTo(170)
+            make.height.equalTo(150)
+        }
+        
+        speechLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(bubbleImageView).inset(16)
+            make.verticalEdges.equalTo(bubbleImageView).inset(32)
         }
         
         characterImageView.snp.makeConstraints { make in
@@ -59,11 +77,11 @@ class MainViewController: UIViewController {
             make.height.equalTo(characterImageView.snp.width)
         }
         
-        speechLabel.snp.makeConstraints { make in
-            make.horizontalEdges.equalTo(bubbleImageView).inset(16)
-            make.verticalEdges.equalTo(bubbleImageView).inset(32)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(characterImageView.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(120)
+            make.height.equalTo(34)
         }
-        
     }
     
     private func configureUI() {
