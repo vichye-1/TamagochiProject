@@ -6,8 +6,15 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainViewController: UIViewController {
+    
+    private let bubbleImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "bubble")
+        return imageView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,16 +22,19 @@ class MainViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureUI()
-        
     }
     
     private func configureHierarchy() {
-        print(#function)
+        view.addSubview(bubbleImageView)
         
     }
     
     private func configureLayout() {
-        print(#function)
+        bubbleImageView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
+            make.height.equalTo(170)
+        }
         
     }
     
